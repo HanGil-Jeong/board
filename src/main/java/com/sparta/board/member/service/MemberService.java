@@ -1,9 +1,9 @@
-package com.sparta.board.service;
+package com.sparta.board.member.service;
 
-import com.sparta.board.dto.response.MemberResponseDto;
-import com.sparta.board.dto.response.SignUpResponseDto;
-import com.sparta.board.entity.Member;
-import com.sparta.board.repository.MemberRepository;
+import com.sparta.board.member.dto.response.MemberResponseDto;
+import com.sparta.board.member.dto.response.SignUpResponseDto;
+import com.sparta.board.member.entity.Member;
+import com.sparta.board.member.repository.MemberRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

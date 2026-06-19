@@ -1,10 +1,10 @@
-package com.sparta.board.controller;
+package com.sparta.board.member.controller;
 
-import com.sparta.board.dto.request.SignUpRequestDto;
-import com.sparta.board.dto.request.UpdatePasswordRequestDto;
-import com.sparta.board.dto.response.MemberResponseDto;
-import com.sparta.board.dto.response.SignUpResponseDto;
-import com.sparta.board.service.MemberService;
+import com.sparta.board.member.dto.request.SignUpRequestDto;
+import com.sparta.board.member.dto.request.UpdatePasswordRequestDto;
+import com.sparta.board.member.dto.response.MemberResponseDto;
+import com.sparta.board.member.dto.response.SignUpResponseDto;
+import com.sparta.board.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

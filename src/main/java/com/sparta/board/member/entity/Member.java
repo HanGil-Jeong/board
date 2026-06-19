@@ -1,5 +1,6 @@
-package com.sparta.board.entity;
+package com.sparta.board.member.entity;
 
+import com.sparta.board.board.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
