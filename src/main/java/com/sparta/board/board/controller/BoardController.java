@@ -2,6 +2,7 @@ package com.sparta.board.board.controller;
 
 import com.sparta.board.board.dto.request.CreateBoardRequestDto;
 import com.sparta.board.board.dto.response.BoardResponseDto;
+import com.sparta.board.board.dto.response.BoardWithAgeResponseDto;
 import com.sparta.board.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -36,6 +37,14 @@ public class BoardController {
 		List<BoardResponseDto> boardResponseDtoList = boardService.findAll();
 
 		return new ResponseEntity<>(boardResponseDtoList, HttpStatus.OK);
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<BoardWithAgeResponseDto> findById(@PathVariable Long id) {
+
+		BoardWithAgeResponseDto boardWithAgeResponseDto = boardService.findById(id);
+
+		return new ResponseEntity<>(boardWithAgeResponseDto, HttpStatus.OK);
 	}
 
 }

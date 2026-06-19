@@ -1,6 +1,7 @@
 package com.sparta.board.board.service;
 
 import com.sparta.board.board.dto.response.BoardResponseDto;
+import com.sparta.board.board.dto.response.BoardWithAgeResponseDto;
 import com.sparta.board.board.entity.Board;
 import com.sparta.board.board.repository.BoardRepository;
 import com.sparta.board.member.entity.Member;
@@ -34,6 +35,13 @@ public class BoardService {
 				.stream()
 				.map(BoardResponseDto::toDto)
 				.toList();
+	}
+
+	public BoardWithAgeResponseDto findById(Long id) {
+		Board findBoard = boardRepository.findByIdOrElseThrow(id);
+		Member writer = findBoard.getMember();
+
+		return new BoardWithAgeResponseDto(findBoard.getTitle(), findBoard.getContents(), writer.getAge());
 	}
 
 }
