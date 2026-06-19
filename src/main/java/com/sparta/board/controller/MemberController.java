@@ -1,6 +1,7 @@
 package com.sparta.board.controller;
 
 import com.sparta.board.dto.request.SignUpRequestDto;
+import com.sparta.board.dto.request.UpdatePasswordRequestDto;
 import com.sparta.board.dto.response.MemberResponseDto;
 import com.sparta.board.dto.response.SignUpResponseDto;
 import com.sparta.board.service.MemberService;
@@ -35,6 +36,17 @@ public class MemberController {
 		MemberResponseDto memberResponseDto = memberService.findById(id);
 
 		return new ResponseEntity<>(memberResponseDto, HttpStatus.OK);
+	}
+
+	@PatchMapping("/{id}")
+	public ResponseEntity<Void> updatePassword(
+			@PathVariable Long id,
+			@RequestBody UpdatePasswordRequestDto requestDto
+	) {
+
+		memberService.updatePassword(id, requestDto.getOldPassword(), requestDto.getNewPassword());
+
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }

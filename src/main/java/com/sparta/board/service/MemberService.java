@@ -4,6 +4,7 @@ import com.sparta.board.dto.response.MemberResponseDto;
 import com.sparta.board.dto.response.SignUpResponseDto;
 import com.sparta.board.entity.Member;
 import com.sparta.board.repository.MemberRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -43,4 +44,17 @@ public class MemberService {
 
 		return new MemberResponseDto(findMember.getUsername(), findMember.getAge());
 	}
+
+	@Transactional
+	public void updatePassword(Long id, String oldPassword, String newPassword) {
+
+		Member findMember = memberRepository.findByIdOrElseThrow(id);
+
+		if (!findMember.getPassword().equals(oldPassword)) {
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "비밀번호가 일치하지 않습니다.");
+		}
+
+		findMember.updatePassword(newPassword);
+	}
+
 }
