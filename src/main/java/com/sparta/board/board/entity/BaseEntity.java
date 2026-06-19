@@ -1,4 +1,4 @@
-package com.sparta.board.entity;
+package com.sparta.board.board.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
