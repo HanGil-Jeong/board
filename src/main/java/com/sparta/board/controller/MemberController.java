@@ -1,0 +1,31 @@
+package com.sparta.board.controller;
+
+import com.sparta.board.dto.request.SignUpRequestDto;
+import com.sparta.board.dto.response.SignUpResponseDto;
+import com.sparta.board.service.MemberService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/members")
+public class MemberController {
+
+	private final MemberService memberService;
+
+	@PostMapping("/signup")
+	public ResponseEntity<SignUpResponseDto> signUp(
+			@RequestBody SignUpRequestDto requestDto
+			) {
+		memberService.signUp(
+				requestDto.getUsername(),
+				requestDto.getPassword(),
+				requestDto.getAge()
+		);
+		return new ResponseEntity<>();
+	}
+}
