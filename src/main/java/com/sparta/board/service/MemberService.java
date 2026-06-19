@@ -1,10 +1,15 @@
 package com.sparta.board.service;
 
+import com.sparta.board.dto.response.MemberResponseDto;
 import com.sparta.board.dto.response.SignUpResponseDto;
 import com.sparta.board.entity.Member;
 import com.sparta.board.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,5 +28,19 @@ public class MemberService {
 				savedMember.getUsername(),
 				savedMember.getAge()
 		);
+	}
+
+	public MemberResponseDto findById(Long id) {
+
+		Optional<Member> optionalMember = memberRepository.findById(id);
+
+		// NPE 방지
+		if (optionalMember.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
+		}
+
+		Member findMember = optionalMember.get();
+
+		return new MemberResponseDto(findMember.getUsername(), findMember.getAge());
 	}
 }
