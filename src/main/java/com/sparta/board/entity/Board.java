@@ -3,7 +3,7 @@ package com.sparta.board.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name = "board")
 public class Board extends BaseEntity{
 
 	@Id
